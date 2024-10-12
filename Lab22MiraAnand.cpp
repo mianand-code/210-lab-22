@@ -8,21 +8,23 @@
 using namespace std;
 
 // declaration and initialization of const int variables
-// range of values being added to the linked list should be between 10 - 99
-// range of values to be 
+// the values being added to the linked list should be between 10 - 99
+// the # of values being added to the linked list should be between 5 - 20
 const int MIN_NUMBER = 10; // represents the minimum value to be added to the linked list, will be used to generate a random # in main()
 const int MAX_NUMBER = 99; // represents the maximum value to be added to the linked list, will be used to generate a random # in main()
 const int MIN_LIST_SIZE = 5; // represents the minimum # of values to be added to the linked list (list size), will be used to generate a random # in main()
 const int MAX_LIST_SIZE = 20; // represents the maximum # of values to be added to the linked list (list size), will be used to generate a random # in main()
 
+// creation of DoublyLinkedList Class
 class DoublyLinkedList {
+// private member variables
 private:
-    struct Node 
+    struct Node // struct definition within class
     {
-        int data;
-        Node* prev;
-        Node* next;
-        Node(int val, Node* p = nullptr, Node* n = nullptr) 
+        int data; // holds a int value
+        Node* prev; // pointer to previous node
+        Node* next; // pointer to next node
+        Node(int val, Node* p = nullptr, Node* n = nullptr) // constructor within struct
         {
             data = val;
             prev = p;
@@ -30,19 +32,25 @@ private:
         }
     };
     
+    // pointers to head and tail
     Node* head;
     Node* tail;
 
 public:
-    // constructor
+    // constructor that initializes the pointers
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
+    // void push_back(int value) function header
+    // DESCRIPTION: this function will create a new node, set the value of the new node, and add this new node to the end (tail) of the list
+    // ARGUMENTS: int value, which is the number to be added to the list
+    // RETURNS: nothing, void function
     void push_back(int value) 
     {
-        Node* newNode = new Node(value);
+        Node* newNode = new Node(value); // create a new node and set its value
+
         if (!tail) // if there's no tail, the list is empty
             head = tail = newNode;
-        else 
+        else // if the list is NOT empty
         {
             tail->next = newNode;
             newNode->prev = tail;
@@ -50,12 +58,17 @@ public:
         }
     }
 
+    // void push_front(int value) function header
+    // DESCRIPTION: this function will create a new node, set the value of the new node, and add this new node to the front (head) of the list
+    // ARGUMENTS: int value, which is the number to be added to the list
+    // RETURNS: nothing, void function
     void push_front(int value) 
     {
-        Node* newNode = new Node(value);
+        Node* newNode = new Node(value); // create a new node and set its value
+
         if (!head) // if there's no head, the list is empty
             head = tail = newNode;
-        else 
+        else // if the list is NOT empty
         {
             newNode->next = head;
             head->prev = newNode;
@@ -63,6 +76,11 @@ public:
         }
     }
 
+    // void insert_after(int value, int position) function header
+    // DESCRIPTION:
+    // ARGUMENTS: int value, which is the number to be added to the list
+    // - int position, which represents the position/index where the value should be added
+    // RETURNS: nothing, void function
     void insert_after(int value, int position) 
     {
         if (position < 0) 
