@@ -2,10 +2,18 @@
 // Module 7, Lesson: Doubly-Linked Lists & Class Destructors, Assignment: Upgrade the DLL Class
 // IDE used: Visual Studio Code for Mac
 
+#include <cstdlib> // needed to generate a random number
+#include <ctime> // needed to generate a random number
 #include <iostream>
 using namespace std;
 
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
+// declaration and initialization of const int variables
+// range of values being added to the linked list should be between 10 - 99
+// range of values to be 
+const int MIN_NUMBER = 10; // represents the minimum value to be added to the linked list, will be used to generate a random # in main()
+const int MAX_NUMBER = 99; // represents the maximum value to be added to the linked list, will be used to generate a random # in main()
+const int MIN_LIST_SIZE = 5; // represents the minimum # of values to be added to the linked list (list size), will be used to generate a random # in main()
+const int MAX_LIST_SIZE = 20; // represents the maximum # of values to be added to the linked list (list size), will be used to generate a random # in main()
 
 class DoublyLinkedList {
 private:
@@ -152,11 +160,13 @@ public:
 // Driver program
 int main() 
 {
+    srand(time(0)); // needed as the first line in main() for randomization
+    
     DoublyLinkedList list;
-    int size = rand() % (MAX_LS-MIN_LS+1) + MIN_LS;
+    int size = rand() % (MAX_LIST_SIZE - MIN_LIST_SIZE + 1) + MIN_LIST_SIZE;
 
     for (int i = 0; i < size; ++i)
-        list.push_back(rand() % (MAX_NR-MIN_NR+1) + MIN_NR);
+        list.push_back(rand() % (MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER);
     
     cout << "List forward: ";
     list.print();
