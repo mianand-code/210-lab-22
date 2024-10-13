@@ -211,6 +211,12 @@ public:
             cout << "The linked list is empty. Head deletion cannot be performed." << endl;
             return; // exit the function
         }
+
+        Node* temp = head; // set temp to head
+        head = head->next; // update head to point to the next node
+
+        if (head) // if head does not equal nullptr
+            head->prev = nullptr; // previous node should be equal to nullptr
     }
 
     // void pop_back() function header
