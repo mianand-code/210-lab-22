@@ -122,9 +122,10 @@ public:
     // void delete_val(int value) function header
     // DESCRIPTION: this function will traverse the list to find a value to delete and then delete that value from the list
     // - deletion will not be performed if the linked list is empty. Function performs a check for that
+    // - deletion will also not be performed if the value was not found in the list
     // ARGUMENTS: int value, which is the number to be added to the list
     // RETURNS: nothing, void function
-    void delete_val(int value) // changing name from delete_node() to delete_val() as per assignment instructions
+    void delete_val(int value) // changing name from delete_node() to delete_val(), as per assignment instructions
     {
         if (!head) // list is empty
         {
@@ -158,9 +159,13 @@ public:
     // void delete_pos(int position) function header
     // DESCRIPTION: this function will traverse the list to find the position (index) of a value to delete and then delete that value from the list
     // - deletion will not be performed if the linked list is empty. Function performs a check for that
-    // - deletion will also not be performed if the position 
+    // - deletion will also not be performed if the position is not within the bounds of the linked list
     // ARGUMENTS: int position, which is the position/index of the value to be deleted from the list
     // RETURNS: nothing, void function
+    void delete_pos(int position) // creating a new method to upgrade the class, as per assignment instructions
+    {
+        if (position < 0)
+    }
 
     // void print() function header
     // DESCRIPTION: this function will check if the linked list is empty or not before outputting the contents of the list to the console
