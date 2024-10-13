@@ -217,6 +217,10 @@ public:
 
         if (head) // if head does not equal nullptr
             head->prev = nullptr; // previous node should be equal to nullptr
+        else // if head equals nullptr
+            tail = nullptr; // tail should also be equal to nullptr
+        
+        delete temp; // perform deletion
     }
 
     // void pop_back() function header
@@ -226,7 +230,21 @@ public:
     // RETURNS: nothing, void function
     void pop_back() // creating a new method to upgrade the class, as per assignment instructions
     {
+        if (!tail) // list is empty
+        {
+            cout << "The linked list is empty. Tail deletion cannot be performed." << endl;
+            return; // exit the function
+        }
 
+        Node* temp = tail; // set temp to tail
+        tail = tail->prev; // update tail to point to the previous node
+
+        if (tail) // if tail does not equal nullptr
+            tail->next = nullptr; // next node should be equal to nullptr
+        else // if tail equals nullptr
+            head = nullptr; // head should also be equal to nullptr
+        
+        delete temp; // perform deletion
     }
 
     // void print() function header
