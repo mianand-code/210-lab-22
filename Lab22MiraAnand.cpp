@@ -10,8 +10,8 @@ using namespace std;
 // declaration and initialization of const int variables
 // the values being added to the linked list should be between 10 - 99
 // the # of values being added to the linked list should be between 5 - 20
-const int MIN_NUMBER = 10; // represents the minimum value to be added to the linked list, will be used to generate a random # in main()
-const int MAX_NUMBER = 99; // represents the maximum value to be added to the linked list, will be used to generate a random # in main()
+const int MIN_NUMBER = 10; // represents the minimum number to be added to the linked list, will be used to generate a random # in main()
+const int MAX_NUMBER = 99; // represents the maximum number to be added to the linked list, will be used to generate a random # in main()
 const int MIN_LIST_SIZE = 5; // represents the minimum # of values to be added to the linked list (list size), will be used to generate a random # in main()
 const int MAX_LIST_SIZE = 20; // represents the maximum # of values to be added to the linked list (list size), will be used to generate a random # in main()
 
@@ -37,7 +37,7 @@ private:
     Node* tail;
 
 public:
-    // constructor that initializes the pointers
+    // constructor that initializes the head and tail pointers
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
     // void push_back(int value) function header
@@ -78,7 +78,7 @@ public:
 
     // void insert_after(int value, int position) function header
     // DESCRIPTION: this function will create a new node, set the value of the new node, and add this new node to a certain position within the linked list
-    // - ensures that the position is valid before proceeding with deletion
+    // - the function ensures that the position is valid before proceeding with deletion
     // ARGUMENTS: int value, which is the number to be added to the list
     // - int position, which represents the position/index where the value should be added
     // RETURNS: nothing, void function
@@ -93,23 +93,24 @@ public:
 
         Node* newNode = new Node(value); // create a new node and set its value
 
-        if (!head) 
+        if (!head) // inserting at the head
         {
             head = tail = newNode;
             return;
         }
 
-        Node* temp = head;
-        for (int i = 0; i < position && temp; ++i)
+        Node* temp = head; // set temp to head
+        for (int i = 0; i < position && temp; ++i) // traverse list to find the position where insertion should be performed
             temp = temp->next;
         
-        if (!temp) 
+        if (!temp) // if temp hits nullptr
         {
             cout << "Position exceeds list size. Node not inserted.\n";
-            delete newNode;
+            delete newNode; // free newNode
             return; // exit the function
         }
 
+        // code block handles insertion at middle or end of list
         newNode->next = temp->next;
         newNode->prev = temp;
         if (temp->next)
@@ -248,7 +249,7 @@ public:
     }
 
     // void print() function header
-    // DESCRIPTION: this function will check if the linked list is empty or not before outputting the contents of the list to the console
+    // DESCRIPTION: this function will output the contents of the linked list to the console
     // - if there are no contents, the user will be notified with a console message
     // ARGUMENTS: no arguments/parameters
     // RETURNS: nothing, void function
@@ -271,7 +272,7 @@ public:
     }
 
     // void print_reverse() function header
-    // DESCRIPTION: this function will check if the linked list is empty or not before outputting the contents of the list to the console IN REVERSE
+    // DESCRIPTION: this function will output the contents of the linked list to the console IN REVERSE
     // - if there are no contents, the user will be notified with a console message
     // ARGUMENTS: no arguments/parameters
     // RETURNS: nothing, void function
@@ -299,7 +300,7 @@ public:
     {
         while (head) // traverse list, while head does not hit nullptr
         {
-            Node* temp = head; // set temp to head to traverse list
+            Node* temp = head; // set temp to head
             head = head->next; // set head to the node after the one to be deleted
             delete temp; // perform deletion
         }
@@ -312,6 +313,7 @@ public:
 // - creation of pop_front()
 // - creation of pop_back()
 // - updated method named delete_val()
+// along with these changes, I am also exercising push_back() to add values to the linked list and print() + print_reverse() to display the contents of the linked list
 int main() 
 {
     srand(time(0)); // needed as the first line in main() for randomization
@@ -342,29 +344,28 @@ int main()
 
     // prompt user to enter the position (index) of the number they wish to delete from the list
     int position;
-    cout << "Please enter the position (index) of the number you want to delete from the list (index starts at 0): ";
+    cout << "Please enter the position (index) of the number you want to delete from the list (position starts at 0): ";
     cin >> position;
-    list.delete_pos(position); // delete_pos() function call, will delete the value in the list that is located at the user-entered position (if it's valid)
+    list.delete_pos(position); // delete_pos() function call, will delete the number in the list that is located at the user-entered position (if it's valid)
     cout << "Here is the updated list, if deletion by position was successful: ";
     list.print(); // print() function call, to print the updated linked list
     cout << endl;
 
-    // prompt user to enter the value they wish to delete from the list
-    // if there are duplicate values in the list, the value closest to the head will be deleted. This is why delete_pos() is useful if there are duplicate values in the list
-    int value;
-    cout << "Please enter the specific value you want to delete from the list: ";
-    cin >> value;
-    list.delete_val(value); // delete_val() function call, will delete the user-entered value from the list (if it was found)
+    // prompt user to enter the number they wish to delete from the list
+    // if there are duplicate numbers in the list, the number closest to the head will be deleted. This is why delete_pos() is useful if there are duplicate numbers in the list
+    int number;
+    cout << "Please enter the specific number you want to delete from the list: ";
+    cin >> number;
+    list.delete_val(number); // delete_val() function call, will delete the user-entered number from the list (if it was found)
     cout << "Here is the updated list, if deletion by value was successful: ";
     list.print(); // print() function call, to print the updated linked list
     cout << endl;
 
-    
     cout << "Here is the final linked list (forwards and backwards) after completing all modifications:" << endl;
     cout << "List forward: ";
-    list.print(); // print() function call, to print the final linked list
+    list.print(); // print() function call, to print the final linked list in original order
     cout << "List backward: ";
-    list.print_reverse(); // print_reverse() function call, to print the final linked list in reverse
+    list.print_reverse(); // print_reverse() function call, to print the final linked list in reverse order
     
     return 0;
 }
