@@ -88,7 +88,7 @@ public:
         if (position < 0) 
         {
             cout << "Position must be >= 0." << endl;
-            return;
+            return; // exit the function
         }
 
         Node* newNode = new Node(value); // create a new node and set its value
@@ -107,7 +107,7 @@ public:
         {
             cout << "Position exceeds list size. Node not inserted.\n";
             delete newNode;
-            return;
+            return; // exit the function
         }
 
         newNode->next = temp->next;
@@ -164,7 +164,39 @@ public:
     // RETURNS: nothing, void function
     void delete_pos(int position) // creating a new method to upgrade the class, as per assignment instructions
     {
-        if (position < 0)
+        if (position < 0) // ensures that position is greater than or equal to 0 before proceeding
+        {
+            cout << "Position must be >= 0." << endl;
+            return; // exit the function
+        }
+
+        if (!head) // list is empty
+        {
+            cout << "The linked list is empty. No deletions can be performed." << endl;
+            return; // exit the function
+        }
+
+        Node* temp = head; // set temp to head
+        for (int i = 0; i < position && temp; i++) // traverse list to find the position of the value to be deleted
+            temp = temp->next;
+        
+        if (!temp) // position is not within bounds of the linked list
+        {
+            cout << "The position is not within the bounds of the linked list. Deletion could not be performed." << endl;
+            return; // exit the function
+        }
+
+        if (temp->prev)
+            temp->prev->next = temp->next;
+        else
+            head = temp->next; // Deleting the head
+
+        if (temp->next)
+            temp->next->prev = temp->prev;
+        else
+            tail = temp->prev; // Deleting the tail
+    
+        delete temp; // perform deletion
     }
 
     // void print() function header
@@ -179,7 +211,7 @@ public:
         if (!current) // list is empty
         {
             cout << "The linked list is empty. No data can be displayed." << endl;
-            return; // exit function
+            return; // exit the function
         }
 
         while (current) // traverse the list and display its contents
