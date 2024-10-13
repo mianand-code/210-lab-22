@@ -87,7 +87,7 @@ public:
         // ensures that position is greater than or equal to 0 before proceeding
         if (position < 0) 
         {
-            cout << "Position must be >= 0." << endl;
+            cout << "Position must be >= 0. Insertion by position cannot be performed." << endl;
             return; // exit the function
         }
 
@@ -129,7 +129,7 @@ public:
     {
         if (!head) // list is empty
         {
-            cout << "The linked list is empty. No deletions can be performed." << endl;
+            cout << "The linked list is empty. Deletion by value cannot be performed." << endl;
             return; // exit the function
         }
 
@@ -139,7 +139,7 @@ public:
         
         if (!temp) // value not found
         {
-            cout << "The value was not found in the linked list. Deletion could not be performed." << endl;
+            cout << "The value was not found in the linked list. Deletion by value cannot be performed." << endl;
             return; // exit the function
         }
 
@@ -166,13 +166,13 @@ public:
     {
         if (position < 0) // ensures that position is greater than or equal to 0 before proceeding
         {
-            cout << "Position must be >= 0." << endl;
+            cout << "Position must be >= 0. Deletion by position cannot be performed." << endl;
             return; // exit the function
         }
 
         if (!head) // list is empty
         {
-            cout << "The linked list is empty. No deletions can be performed." << endl;
+            cout << "The linked list is empty. Deletion by position cannot be performed." << endl;
             return; // exit the function
         }
 
@@ -182,7 +182,7 @@ public:
         
         if (!temp) // position is not within bounds of the linked list
         {
-            cout << "The position is not within the bounds of the linked list. Deletion could not be performed." << endl;
+            cout << "The position is not within the bounds of the linked list. Deletion by position cannot be performed." << endl;
             return; // exit the function
         }
 
@@ -197,6 +197,30 @@ public:
             tail = temp->prev; // Deleting the tail
     
         delete temp; // perform deletion
+    }
+
+    // void pop_front() function header
+    // DESCRIPTION: this function will delete the head node from the linked list
+    // - deletion will not be performed if the linked list is empty. Function performs a check for that
+    // ARGUMENTS: no arguments/parameters
+    // RETURNS: nothing, void function
+    void pop_front() // creating a new method to upgrade the class, as per assignment instructions
+    {
+        if (!head) // list is empty
+        {
+            cout << "The linked list is empty. Head deletion cannot be performed." << endl;
+            return; // exit the function
+        }
+    }
+
+    // void pop_back() function header
+    // DESCRIPTION: this function will delete the tail node from the linked list
+    // - deletion will not be performed if the linked list is empty. Function performs a check for that
+    // ARGUMENTS: no arguments/parameters
+    // RETURNS: nothing, void function
+    void pop_back() // creating a new method to upgrade the class, as per assignment instructions
+    {
+
     }
 
     // void print() function header
