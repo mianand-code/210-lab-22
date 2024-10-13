@@ -328,14 +328,26 @@ int main()
     
     cout << "Here is the linked list that was generated: ";
     list.print(); // print() function call, will print the contents of the linked list in original order
+    cout << endl;
 
     list.pop_front(); // pop_front() function call, will delete the head node of the list
     cout << "This is the list after the deleting the head node: ";
     list.print(); // print() function call, to print the updated linked list
+    cout << endl;
 
     list.pop_back(); // pop_back() function call, will delete the tail node of the list
     cout << "This is the list after the deleting the tail node: ";
     list.print(); // print() function call, to print the updated linked list
+    cout << endl;
+
+    // prompt user to enter the position (index) of the number they wish to delete from the list
+    int position;
+    cout << "Please enter the position (index) of the number you want to delete from the list (index starts at 0): ";
+    cin >> position;
+    list.delete_pos(position); // delete_pos() function call, will delete the value in the list that is located at the user-entered position (if it's valid)
+    cout << "Here is the updated list, if position deletion was successful: ";
+    list.print(); // print() function call, to print the updated linked list
+    cout << endl;
 
     cout << "List backward: ";
     list.print_reverse();
