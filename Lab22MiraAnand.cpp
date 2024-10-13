@@ -126,13 +126,21 @@ public:
     // RETURNS: nothing, void function
     void delete_val(int value) // changing name from delete_node() to delete_val() as per assignment instructions
     {
-        if (!head) return; // Empty list
+        if (!head) // list is empty
+        {
+            cout << "The linked list is empty. No deletions can be performed." << endl;
+            return; // exit the function
+        }
 
-        Node* temp = head;
-        while (temp && temp->data != value)
+        Node* temp = head; // set temp to head
+        while (temp && temp->data != value) // traverse list to find value to be deleted
             temp = temp->next;
         
-        if (!temp) return; // Value not found
+        if (!temp) // value not found
+        {
+            cout << "The value was not found in the linked list. Deletion could not be performed." << endl;
+            return; // exit the function
+        }
 
         if (temp->prev)
             temp->prev->next = temp->next;
@@ -144,42 +152,63 @@ public:
         else
             tail = temp->prev; // Deleting the tail
     
-        delete temp;
+        delete temp; // perform deletion
     }
 
+    // void print() function header
+    // DESCRIPTION: this function will check if the linked list is empty or not before outputting the contents of the list to the console
+    // - if there are no contents, the user will be notified with a console message
+    // ARGUMENTS: no arguments/parameters
+    // RETURNS: nothing, void function
     void print() 
     {
-        Node* current = head;
-        if (!current) return;
+        Node* current = head; // set current to head, to start at the beginning of the list
 
-        while (current) 
+        if (!current) // list is empty
+        {
+            cout << "The linked list is empty. No data can be displayed." << endl;
+            return; // exit function
+        }
+
+        while (current) // traverse the list and display its contents
         {
             cout << current->data << " ";
-            current = current->next;
+            current = current->next; // progress to next node
         }
         cout << endl;
     }
 
+    // void print_reverse() function header
+    // DESCRIPTION: this function will check if the linked list is empty or not before outputting the contents of the list to the console IN REVERSE
+    // - if there are no contents, the user will be notified with a console message
+    // ARGUMENTS: no arguments/parameters
+    // RETURNS: nothing, void function
     void print_reverse() 
     {
-        Node* current = tail;
-        if (!current) return;
+        Node* current = tail; // set current to tail, to start at the end of the list
+        
+        if (!current) // list is empty
+        {
+            cout << "The linked list is empty. No data can be displayed." << endl;
+            return; // exit function
+        }
 
-        while (current) 
+        while (current) // traverse the list and display its contents
         {
             cout << current->data << " ";
-            current = current->prev;
+            current = current->prev; // progress to previous node, to print in reverse
         }
         cout << endl;
     }
 
+    // class destructor, to delete all nodes
     ~DoublyLinkedList() 
     {
-        while (head) 
+        while (head) // traverse list, while head does not hit nullptr
         {
-            Node* temp = head;
-            head = head->next;
-            delete temp;
+            Node* temp = head; // set temp to head to traverse list
+            head = head->next; // set head to the node after the one to be deleted
+            delete temp; // perform deletion
         }
     }
 };
