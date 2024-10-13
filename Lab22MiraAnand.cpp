@@ -77,19 +77,22 @@ public:
     }
 
     // void insert_after(int value, int position) function header
-    // DESCRIPTION:
+    // DESCRIPTION: this function will create a new node, set the value of the new node, and add this new node to a certain position within the linked list
+    // - ensures that the position is valid before proceeding with deletion
     // ARGUMENTS: int value, which is the number to be added to the list
     // - int position, which represents the position/index where the value should be added
     // RETURNS: nothing, void function
     void insert_after(int value, int position) 
     {
+        // ensures that position is greater than or equal to 0 before proceeding
         if (position < 0) 
         {
             cout << "Position must be >= 0." << endl;
             return;
         }
 
-        Node* newNode = new Node(value);
+        Node* newNode = new Node(value); // create a new node and set its value
+
         if (!head) 
         {
             head = tail = newNode;
@@ -106,6 +109,7 @@ public:
             delete newNode;
             return;
         }
+
         newNode->next = temp->next;
         newNode->prev = temp;
         if (temp->next)
@@ -115,7 +119,12 @@ public:
         temp->next = newNode;
     }
 
-    void delete_node(int value) 
+    // void delete_val(int value) function header
+    // DESCRIPTION: this function will traverse the list to find a value to delete and then delete that value from the list
+    // - deletion will not be performed if the linked list is empty. Function performs a check for that
+    // ARGUMENTS: int value, which is the number to be added to the list
+    // RETURNS: nothing, void function
+    void delete_val(int value) // changing name from delete_node() to delete_val() as per assignment instructions
     {
         if (!head) return; // Empty list
 
