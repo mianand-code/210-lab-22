@@ -345,12 +345,26 @@ int main()
     cout << "Please enter the position (index) of the number you want to delete from the list (index starts at 0): ";
     cin >> position;
     list.delete_pos(position); // delete_pos() function call, will delete the value in the list that is located at the user-entered position (if it's valid)
-    cout << "Here is the updated list, if position deletion was successful: ";
+    cout << "Here is the updated list, if deletion by position was successful: ";
     list.print(); // print() function call, to print the updated linked list
     cout << endl;
 
+    // prompt user to enter the value they wish to delete from the list
+    // if there are duplicate values in the list, the value closest to the head will be deleted. This is why delete_pos() is useful if there are duplicate values in the list
+    int value;
+    cout << "Please enter the specific value you want to delete from the list: ";
+    cin >> value;
+    list.delete_val(value); // delete_val() function call, will delete the user-entered value from the list (if it was found)
+    cout << "Here is the updated list, if deletion by value was successful: ";
+    list.print(); // print() function call, to print the updated linked list
+    cout << endl;
+
+    
+    cout << "Here is the final linked list (forwards and backwards) after completing all modifications:" << endl;
+    cout << "List forward: ";
+    list.print(); // print() function call, to print the final linked list
     cout << "List backward: ";
-    list.print_reverse();
+    list.print_reverse(); // print_reverse() function call, to print the final linked list in reverse
     
     return 0;
 }
