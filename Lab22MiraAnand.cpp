@@ -145,7 +145,7 @@ public:
         if (temp->prev)
             temp->prev->next = temp->next;
         else
-            head = temp->next; // Deleting the head
+            head = temp->next; // Deleting the head, keep this functionality for purposes of class completeness
 
         if (temp->next)
             temp->next->prev = temp->prev;
@@ -154,6 +154,13 @@ public:
     
         delete temp; // perform deletion
     }
+
+    // void delete_pos(int position) function header
+    // DESCRIPTION: this function will traverse the list to find the position (index) of a value to delete and then delete that value from the list
+    // - deletion will not be performed if the linked list is empty. Function performs a check for that
+    // - deletion will also not be performed if the position 
+    // ARGUMENTS: int position, which is the position/index of the value to be deleted from the list
+    // RETURNS: nothing, void function
 
     // void print() function header
     // DESCRIPTION: this function will check if the linked list is empty or not before outputting the contents of the list to the console
@@ -218,10 +225,14 @@ int main()
 {
     srand(time(0)); // needed as the first line in main() for randomization
     
-    DoublyLinkedList list;
+    DoublyLinkedList list; // creation of a DoublyLinkedList object
+
+    // declaration and initialization of a int variable "size", that will generate a random # between 5 - 20
+    // this will be the number of values being added to the linked list
     int size = rand() % (MAX_LIST_SIZE - MIN_LIST_SIZE + 1) + MIN_LIST_SIZE;
 
-    for (int i = 0; i < size; ++i)
+    for (int i = 0; i < size; ++i) // loop that continues until it hits "size"
+        // push_back() function call, adds random values between 10 - 99 to the end of the linked list
         list.push_back(rand() % (MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER);
     
     cout << "List forward: ";
