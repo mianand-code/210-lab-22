@@ -294,6 +294,7 @@ public:
     }
 
     // class destructor, to delete all nodes
+    // do not need to call it in main(), since it is automatically called when an object goes out of scope
     ~DoublyLinkedList() 
     {
         while (head) // traverse list, while head does not hit nullptr
@@ -306,6 +307,11 @@ public:
 };
 
 // Driver program
+// as per assignment instructions, exercising the changes I made to the class in main()
+// - creation of delete_pos()
+// - creation of pop_front()
+// - creation of pop_back()
+// - updated method named delete_val()
 int main() 
 {
     srand(time(0)); // needed as the first line in main() for randomization
@@ -320,16 +326,19 @@ int main()
         // push_back() function call, adds random values between 10 - 99 to the end of the linked list
         list.push_back(rand() % (MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER);
     
-    cout << "List forward: ";
-    list.print();
+    cout << "Here is the linked list that was generated: ";
+    list.print(); // print() function call, will print the contents of the linked list in original order
+
+    list.pop_front(); // pop_front() function call, will delete the head node of the list
+    cout << "This is the list after the deleting the head node: ";
+    list.print(); // print() function call, to print the updated linked list
+
+    list.pop_back(); // pop_back() function call, will delete the tail node of the list
+    cout << "This is the list after the deleting the tail node: ";
+    list.print(); // print() function call, to print the updated linked list
 
     cout << "List backward: ";
     list.print_reverse();
-
-    cout << "Deleting list, then trying to print.\n";
-    list.~DoublyLinkedList();
-    cout << "List forward: ";
-    list.print();
     
     return 0;
 }
